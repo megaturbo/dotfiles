@@ -91,7 +91,13 @@ source $ZSH/oh-my-zsh.sh
 
 alias gs='git status'
 alias gd='git diff'
+alias yaourt='aurman -Ss'
 
 # Pywal - colors
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh 
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+aktivate() {
+  export PATH=/usr/lib/k/bin:$PATH
+}
