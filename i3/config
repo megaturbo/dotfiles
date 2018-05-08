@@ -151,7 +151,7 @@ client.focused		#000000 #a3b789 #000000 #00ff00 #a537fd
 client.background	#ff66cc
 
 bar {
-        status_command i3blocks #-c /home/megaturbo/.config/i3/i3blocks.conf
+    status_command i3blocks  #-c /home/megaturbo/.config/i3/i3blocks.conf
 	height 25
 }
 
@@ -173,3 +173,16 @@ exec_always feh --bg-scale ~/Pictures/sw_dm/1.jpg
 exec_always compton
 
 exec_always --no-startup-id sysctl acpi.ec_no_wakeup=1
+
+# Change keyboard layout to FR_CH
+exec_always setxkbmap -layout "us,ch" -variant ",fr"
+exec_always setxkbmap -option 'grp:alt_shift_toggle'
+
+# Multi-screen screenshots with scrot
+bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # All screens
+
+# OSX-like area selection screenshots
+bindsym --release Shift+Print exec scrot -s '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
+
+# Active window screenshot
+bindsym --release Ctrl+Shift+Print exec scrot -u '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
