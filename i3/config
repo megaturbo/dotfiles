@@ -1,32 +1,27 @@
 set $mod Mod4
 
-#for_window [class="^.*"] border pixel 0
-
+# i3-gaps
 new_window pixel 2
 smart_borders on
 gaps inner 20
-gaps outer 0
+gaps outer 30
 smart_gaps on
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Font for window titles and bar
 font pango:PT mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+popup_during_fullscreen smart
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start program launcher
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+h focus left
@@ -46,11 +41,7 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
-#bindsym $mod+Shift+Left move left
-#bindsym $mod+Shift+Down move down
-#bindsym $mod+Shift+Up move up
-#bindsym $mod+Shift+Right move right
+# move workspace to laptop screen (left) or external screen (right)
 bindsym $mod+Shift+Left move workspace to output eDP-1
 bindsym $mod+Shift+Right move workspace to output HDMI-1
 
@@ -80,18 +71,11 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws10 "10: "
-
-# Assign screen to workspace
-workspace $ws1 output LVDS-0
-workspace $ws2 output DP-5
-workspace $ws3 output DP-5
-workspace $ws4 output LVDS-0
-
+set $ws1    " 1 "
+set $ws2    " 2 "
+set $ws3    " 3 "
+set $ws4    " 4 "
+set $ws10   "10 "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -144,10 +128,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# lock screen
 bindsym Control+$mod+l exec i3lock --color 000000
 
 # class			    border  bg      text    idctr   child_border
-client.focused		#000000 #a3b789 #000000 #00ff00 #a537fd
+client.focused		#000000 #a3b789 #000000 #00ff00
 client.background	#ff66cc
 
 bar {
@@ -155,34 +140,26 @@ bar {
 	height 25
 }
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
-
-# Media player controls
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-exec_always feh --bg-scale ~/Pictures/sw_dm/1.jpg
-exec_always compton
-
-exec_always --no-startup-id sysctl acpi.ec_no_wakeup=1
-
 # Change keyboard layout to FR_CH
 exec_always setxkbmap -layout "us,ch" -variant ",fr"
 exec_always setxkbmap -option 'grp:alt_shift_toggle'
 
-# Multi-screen screenshots with scrot
+# Screenshots
 bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # All screens
-
-# OSX-like area selection screenshots
 bindsym --release Shift+Print exec scrot -s '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
-
-# Active window screenshot
 bindsym --release Ctrl+Shift+Print exec scrot -u '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
+
+# Media keys and brightness control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# start up apps
+exec --no-startup-id wal -R
+exec --no-startup-id compton
+exec --no-startup-id sysctl acpi.ec_no_wakeup=1

@@ -1,17 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty it self.
 env:
-  # TERM env customization.
-  #
-  # If this property is not set, alacritty will set it to xterm-256color.
-  #
-  # Note that some xterm terminfo databases don't declare support for italics.
-  # You can verify this by checking for the presence of `smso` and `sitm` in
-  # `infocmp xterm-256color`.
   TERM: xterm-256color
 
 window:
@@ -34,7 +23,7 @@ window:
   decorations: true
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 8
+tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -78,7 +67,7 @@ font:
     # style: Italic
 
   # Point size of the font
-  size: 11.0
+  size: 8.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -160,7 +149,7 @@ visual_bell:
   duration: 0
 
 # Background opacity
-background_opacity: 0.9
+background_opacity: 0.8
 
 # Mouse bindings
 #
@@ -197,7 +186,7 @@ mouse:
   # scrolling for applications like `man`.
   #
   # To disable this completely, set `faux_scrollback_lines` to 0.
-  faux_scrollback_lines: 1
+  faux_scrolling_lines: 1
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
