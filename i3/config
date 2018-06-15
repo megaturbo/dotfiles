@@ -136,6 +136,8 @@ client.focused		#000000 #a3b789 #000000 #00ff00
 client.background	#ff66cc
 
 bar {
+    wheel_up_cmd nop
+    wheel_down_cmd nop
     status_command i3blocks  #-c /home/megaturbo/.config/i3/i3blocks.conf
 	height 25
 }
