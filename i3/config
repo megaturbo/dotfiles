@@ -21,7 +21,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme solarized
 
 # change focus
 bindsym $mod+h focus left
