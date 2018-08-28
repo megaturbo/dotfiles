@@ -3,8 +3,8 @@ set $mod Mod4
 # i3-gaps
 new_window pixel 2
 smart_borders on
-gaps inner 20
-gaps outer 30
+#gaps inner 20
+#gaps outer 00
 smart_gaps on
 
 # Font for window titles and bar
