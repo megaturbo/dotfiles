@@ -132,19 +132,22 @@ bindsym $mod+r mode "resize"
 bindsym Control+$mod+l exec i3lock --color 000000
 
 # class			    border  bg      text    idctr   child_border
-client.focused		#000000 #a3b789 #000000 #00ff00
+client.focused		#000000 #a3b789 #000000 #123489
 client.background	#ff66cc
 
 bar {
     wheel_up_cmd nop
     wheel_down_cmd nop
-    status_command i3blocks  #-c /home/megaturbo/.config/i3/i3blocks.conf
+    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
 	height 25
-}
+    # mode hide
 
-# Change keyboard layout to FR_CH
-exec_always setxkbmap -layout "us,ch" -variant ",fr"
-exec_always setxkbmap -option 'grp:alt_shift_toggle'
+    colors {
+        background #232323
+    	separator #330066
+    	statusline #fdf6e3
+    }
+}
 
 # Screenshots
 bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # All screens
@@ -162,6 +165,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # start up apps
-exec --no-startup-id wal -R
-exec --no-startup-id compton
+exec_always --no-startup-id wal -R
+#exec --no-startup-id compton
 exec --no-startup-id sysctl acpi.ec_no_wakeup=1
+
+
+# Change keyboard layout to FR_CH
+exec_always setxkbmap -layout "us,ch" -variant ",fr"
+exec_always setxkbmap -option 'grp:alt_shift_toggle'
