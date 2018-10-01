@@ -150,9 +150,9 @@ bar {
 }
 
 # Screenshots
-bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # All screens
-bindsym --release Shift+Print exec scrot -s '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
-bindsym --release Ctrl+Shift+Print exec scrot -u '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
+bindsym --release Print exec scrot -z '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # All screens
+bindsym --release Shift+Print exec scrot -z -s '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
+bindsym --release Ctrl+Shift+Print exec scrot -z -u '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # Area selection
 
 # Media keys and brightness control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -169,6 +169,9 @@ exec_always --no-startup-id wal -R
 #exec --no-startup-id compton
 exec --no-startup-id sysctl acpi.ec_no_wakeup=1
 
+# stop da beep
+exec --no-startup-id xset b off
+exec --no-startup-id xset b 0 0 0
 
 # Change keyboard layout to FR_CH
 exec_always setxkbmap -layout "us,ch" -variant ",fr"
