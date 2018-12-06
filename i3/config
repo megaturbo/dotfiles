@@ -135,19 +135,9 @@ bindsym Control+$mod+l exec i3lock --color 000000
 client.focused		#000000 #a3b789 #000000 #123489
 client.background	#ff66cc
 
-bar {
-    wheel_up_cmd nop
-    wheel_down_cmd nop
-    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-	height 25
-    # mode hide
+# polybar
+# exec_always --no-startup-id $HOME/.config/polybar/start.sh
 
-    colors {
-        background #232323
-    	separator #330066
-    	statusline #fdf6e3
-    }
-}
 
 # Screenshots
 bindsym --release Print exec scrot -z '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots/ && mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots/ | head -1`' # All screens

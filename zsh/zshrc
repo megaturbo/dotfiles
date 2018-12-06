@@ -128,3 +128,5 @@ function sshadd
     #ssh-add ~/.ssh/id_rsa
     ssh-add
 }
+
+export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
