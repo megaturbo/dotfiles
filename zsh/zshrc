@@ -88,15 +88,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 alias gs='git status'
-alias gd='git diff'
-alias matt='man'
-alias cdtl='cd ~/stuff/truelevel/'
 
 # Pywal - colors
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh 
+# (cat ~/.cache/wal/sequences &)
+# source ~/.cache/wal/colors-tty.sh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Path
@@ -125,8 +121,15 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 function sshadd
 {
     eval "$(ssh-agent -s)"
-    #ssh-add ~/.ssh/id_rsa
-    ssh-add
+    if (( $# == 0 ))
+    then
+        ssh-add
+    else
+        ssh-add $1
+    fi
 }
 
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
+
+export EDITOR=/usr/bin/vim
+export BROWSER=/usr/bin/chromium
