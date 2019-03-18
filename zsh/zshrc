@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs='git status'
+alias zaz='yay'
 
 # Pywal - colors
 # (cat ~/.cache/wal/sequences &)
