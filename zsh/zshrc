@@ -94,19 +94,11 @@ alias zaz='yay'
 # Pywal - colors
 # (cat ~/.cache/wal/sequences &)
 # source ~/.cache/wal/colors-tty.sh
+
+# zsh autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Path
-export PATH=/home/megaturbo/.local/bin:$PATH
-
-# Functions
-aktivate() {
-  export PATH=/usr/lib/k/bin:$PATH
-}
-
-export PATH=~/.npm-global/bin:$PATH
-export PATH=~/.yarn/bin:$PATH
-
+# list i3 shortcuts
 function i3shorts() {
     local sel
     sel=cat
@@ -114,10 +106,6 @@ function i3shorts() {
     egrep -r "^ *bindsym" ~/.config/i3/config | sed -e 's/bindsym *//' -e 's/--release *//' -e 's/ / => /' | $sel
 }
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 function sshadd
 {
@@ -130,7 +118,18 @@ function sshadd
     fi
 }
 
-export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
+function solc_setver
+{
+    dir=/opt/solc/$1
+    if [ ! -f $dir/solc ]; then
+      echo Downloading solc@$1 binary
+      sudo mkdir $dir
+	    sudo curl -sL https://github.com/ethereum/solidity/releases/download/v$1/solc-static-linux --output $dir/solc
+	    sudo chmod +x $dir/solc
+    fi
+    echo Setting solc@$1 as current solc
+    export PATH=$dir:$PATH
+}
 
 export EDITOR=/usr/bin/vim
 export BROWSER=/usr/bin/chromium
