@@ -35,9 +35,9 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -theme solarized
 bindsym $mod+z exec --no-startup-id morc_menu
 
 # screen layouts
-bindsym $mod+u mode screenlayout
-
-mode "screenlayout" {
+bindsym $mod+u mode "$mode_screenlayout"
+set $mode_screenlayout screenlayout: (1) One screen (2) Two screen HDMI (a) Open Arandr
+mode "$mode_screenlayout" {
   bindsym 1 exec --no-startup-id ~/.screenlayout/one.sh, mode "default"
   bindsym 2 exec --no-startup-id ~/.screenlayout/hdmi.sh, mode "default"
 
@@ -45,7 +45,6 @@ mode "screenlayout" {
 
   bindsym Escape mode "default"
 }
-
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
