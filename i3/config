@@ -34,6 +34,19 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -theme solarized
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
 
+# screen layouts
+bindsym $mod+u mode screenlayout
+
+mode "screenlayout" {
+  bindsym 1 exec --no-startup-id ~/.screenlayout/one.sh, mode "default"
+  bindsym 2 exec --no-startup-id ~/.screenlayout/hdmi.sh, mode "default"
+
+  bindsym a exec --no-startup-id arandr, mode "default"
+
+  bindsym Escape mode "default"
+}
+
+
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
