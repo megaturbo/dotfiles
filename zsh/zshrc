@@ -91,6 +91,7 @@ source $ZSH/oh-my-zsh.sh
 alias gs='git status'
 alias zaz='yay'
 alias t='tree . -L 2'
+alias tn='t -I node_modules' #same shit but ignore node_modules folders
 
 # Pywal - colors
 # (cat ~/.cache/wal/sequences &)
