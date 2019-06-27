@@ -154,35 +154,37 @@ persistent_logging: false
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Tomorrow Night Bright)
+# color_start
+# snazzy.yaml
+# Colors (Snazzy)
 colors:
   # Default colors
   primary:
-    background: '0x292a44'
-    foreground: '0xf1eff7'
+    background: '0x282a36'
+    foreground: '0xeff0eb'
 
   # Normal colors
   normal:
-    black:   '0x282a2e'
-    red:     '0xe72d2d'
-    green:   '0x1fac7f'
-    yellow:  '0xe88e2c'
-    blue:    '0x678bdc'
-    magenta: '0xae81ff'
-    cyan:    '0x49acbf'
-    white:   '0x707880'
+    black:   '0x282a36'
+    red:     '0xff5c57'
+    green:   '0x5af78e'
+    yellow:  '0xf3f99d'
+    blue:    '0x57c7ff'
+    magenta: '0xff6ac1'
+    cyan:    '0x9aedfe'
+    white:   '0xf1f1f0'
 
   # Bright colors
   bright:
-    black:   '0x474b51'
-    red:     '0xeb6d6d'
-    green:   '0x2de0a7'
-    yellow:  '0xf0a95b'
-    blue:    '0x7aa5ff'
-    magenta: '0xbaa2e4'
-    cyan:    '0x66d9ef'
-    white:   '0xc5c8c6'
-
+    black:   '0x686868'
+    red:     '0xff5c57'
+    green:   '0x5af78e'
+    yellow:  '0xf3f99d'
+    blue:    '0x57c7ff'
+    magenta: '0xff6ac1'
+    cyan:    '0x9aedfe'
+    white:   '0xf1f1f0'
+# color_end
 
   # Dim colors
   #
