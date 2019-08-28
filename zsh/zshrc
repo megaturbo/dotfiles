@@ -55,7 +55,7 @@ ZSH_THEME="sorin"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  git zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,6 +92,7 @@ alias gs='git status'
 alias zaz='yay'
 alias t='tree . -L 2'
 alias tn='t -I node_modules' #same shit but ignore node_modules folders
+alias p='ping 8.8.8.8'
 
 # Pywal - colors
 # (cat ~/.cache/wal/sequences &)
