@@ -17,4 +17,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 # go
 export GOPATH=$HOME/go
+#export GOROOT=/usr/bin
+export PATH=$PATH:$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin

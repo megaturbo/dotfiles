@@ -93,6 +93,8 @@ alias zaz='yay'
 alias t='tree . -L 2'
 alias tn='t -I node_modules' #same shit but ignore node_modules folders
 alias p='ping 8.8.8.8'
+alias gor='go run main.go'
+
 
 # Pywal - colors
 # (cat ~/.cache/wal/sequences &)
