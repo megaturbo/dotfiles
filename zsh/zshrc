@@ -138,4 +138,4 @@ function solc_setver
 }
 
 export EDITOR=/usr/bin/vim
-export BROWSER=/usr/bin/brave
+export BROWSER=/usr/bin/chromium
