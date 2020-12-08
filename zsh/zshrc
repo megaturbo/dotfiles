@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs='git status'
+alias gwl="watch -tc -n 1 git log --oneline --graph --color --all --decorate"
 alias zaz='yay'
 alias t='tree . -L 2'
 alias tn='t -I node_modules' #same shit but ignore node_modules folders
