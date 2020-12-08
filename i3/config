@@ -1,132 +1,94 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# megaturbo i3 config
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 2
 new_float normal
-
-# Hide borders
 hide_edge_borders none
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
 font xft:Source Code Pro 11
-#font Hack 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec alacritty
 
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun -theme solarized
-
-# launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
-
+################################################################################################
 # screen layouts
 bindsym $mod+u mode "$mode_screenlayout"
-set $mode_screenlayout screenlayout: (1) One screen (2) Two screen HDMI (a) Open Arandr
+set $mode_screenlayout screenlayout: (1) One screen (2) 2-screens HDMI (3) 2-screens DP (a) Open Arandr
 mode "$mode_screenlayout" {
   bindsym 1 exec --no-startup-id ~/.screenlayout/one.sh, mode "default"
   bindsym 2 exec --no-startup-id ~/.screenlayout/hdmi.sh, mode "default"
-
+  bindsym 3 exec --no-startup-id ~/.screenlayout/dp.sh, mode "default"
   bindsym a exec --no-startup-id arandr, mode "default"
-
   bindsym Escape mode "default"
 }
 
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-# exec_always --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+# sound
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
-
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec brave
+# shortcuts
+#    run apps
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme solarized
+bindsym $mod+Tab exec --no-startup-id rofi -show window -theme
+bindsym $mod+F2 exec $BROWSER
 bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+
+#    printscreens
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# change focus
+# i3 move stuff ################################################################################
+# focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-# move focused window
+# move focused
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
+# move ws to monitor
 bindsym $mod+Shift+Left move workspace to output left
 bindsym $mod+Shift+Right move workspace to output right
-
 # split orientation
 bindsym $mod+g split h
 bindsym $mod+v split v
 bindsym $mod+q split toggle
-
-# toggle fullscreen mode for the focused container
+# fullscreen
 bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
-
 # focus the parent container
 bindsym $mod+a focus parent
-
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
-
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
@@ -135,16 +97,16 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "  1  "
-set $ws2 "  2  "
-set $ws3 "  3  "
-set $ws4 "  4  "
-set $ws5 "  5  "
-set $ws6 "  6  "
-set $ws7 "  7  "
-set $ws8 "  8  "
-set $ws9 "  9  "
-set $ws0 "  0  "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws0 "0"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -182,15 +144,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0
 
-# Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
-
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
@@ -265,7 +220,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym Control+$mod+l exec --no-startup-id blurlock
+bindsym $mod+Control+l --release exec --no-startup-id slock
 
 # Autostart applications
 # stop da beep
@@ -282,7 +237,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker slock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -317,37 +272,12 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+# polybar
+# exec_always --no-startup-id ~/.config/i3/polybar.sh
 bar {
-	i3bar_command i3bar
-	status_command i3status
-	position top
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
-
-    colors {
-        background #131313
-        statusline #F9FAF9
-        separator  #454947
-
-#                      border  backgr. text
-        focused_workspace  #c1c1c0 #c1c1c0 #131313
-        active_workspace   #a1a1a0 #a1a1a0 #FDF6E3
-        inactive_workspace #313130 #313130 #EEE8D5
-        binding_mode       #678bdc #2C2C2C #F9FAF9
-        urgent_workspace   #292a44 #e72d2d #f1eff7
-    }
+  position top
+  status_command i3status
 }
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
@@ -376,7 +306,7 @@ gaps outer -2
 smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+# on|no_oii (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
@@ -427,10 +357,13 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | awk '/* index:/ { print $3 }') -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks | awk '/* index:/ { print $3 }') toggle
 
-
-# Add keyboard layout to FR_CH
-exec_always --no-startup-id setxkbmap -layout "us,ch" -variant ",fr"
-exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
-
 # Wallpaper
 exec --no-startup-id feh --bg-scale ~/.wallpapers/firewatch/purple.jpg
+
+# stop fucking focus
+focus_on_window_activation none
+mouse_warping none
+
+# keyboard
+exec --no-startup-id setxkbmap -layout "us,ch" -variant ",fr"
+exec --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
