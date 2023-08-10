@@ -1,0 +1,118 @@
+general {
+
+        output_format = "i3bar"
+
+
+        colors = true
+
+        color_good = "#5af78e"
+        color_degraded = "#f3f99d"
+        color_bad = "#ff5c57"
+
+
+        interval = 5
+}
+
+py3status {
+        nagbar_font = 'pango:Laksaman, italic'
+}
+
+order += "spotify"
+order += "disk /"
+order += "battery 0"
+order += "memory"
+order += "load"
+order += "keyboard_layout"
+order += "volume master"
+order += "tztime local"
+
+spotify {
+        button_next = 4
+        button_play_pause = 1
+        button_previous = 5
+        format = "{artist} - {title}"
+        format_stopped = ""
+        format_down = ""
+        color_paused = "#000000"
+}
+
+disk "/" {
+        format = "🖴 %used"
+}
+
+
+
+volume master {
+        format = "🔊 %volume"
+        format_muted = "🔇 %volume"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+
+wireless wlan0 {
+        format_up = "W: (%quality at %essid, %bitrate) %ip"
+        format_down = "W: down"
+}
+
+ethernet eth0 {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "No battery"
+        status_chr = "⚡"
+        status_bat = "🔋"
+        status_unk = "? UNK"
+        status_full = "☻ FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+
+
+        low_threshold = 10
+}
+
+
+path_exists VPN {
+        # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+        path = "/proc/sys/net/ipv4/conf/tun0"
+        #
+        # nmcli con show --active | grep -i vpn
+}
+
+tztime local {
+        format = "%d.%m.%Y %H:%M:%S"
+}
+
+load {
+        format = "🔥 %5min"
+}
+
+keyboard_layout { 
+        cache_timeout = 1
+        format = "\?if=layout=ch 🇨🇭|🇺🇸"
+}
+
+cpu_temperature 0 {
+
+
+        format = "T: %degrees °C"
+
+
+        path = "/sys/devices/platform/coretemp.0/temp1_input"
+}
+
+memory {
+        format = "🐑 %used/%total"
+
+        threshold_degraded = "20%"
+        format_degraded = "🐏 %used/%total"
+
+        threshold_critical = "10%"
+}
+read_file uptime {
+
+        path = "/proc/uptime"
+}
