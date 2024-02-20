@@ -145,6 +145,7 @@ bindsym $mod+Shift+0 move container to workspace $ws0
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [title="Spotify"] floating enable border pixel 1
 for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [title="Pritunl Client"] floating enable border pixel 1
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 
 # switch to workspace with urgent window automatically
